@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:one/drawer.dart';
-import 'package:one/fod.dart';
+import 'package:one/body.dart';
 import 'package:one/login.dart';
 
 void main() => runApp(MyApp());
@@ -45,42 +45,6 @@ class _myapp extends State<_MyApp> {
         child: Body(),
       ),
       drawer: Drawers(),
-    );
-  }
-}
-
-class Body extends StatelessWidget {
-  final List<String> foods = ['pizza', 'burger', 'hotdog'];
-
-  @override 
-  Widget build(BuildContext context){
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: ListView.builder(
-          itemCount: foods.length,
-          itemBuilder: (context, index){
-            return InkWell(
-              onTap: () => {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => FoodPage(foods[index])))
-              },
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                  borderRadius: BorderRadius.circular(15)
-                ),
-                margin: const EdgeInsets.all(8.0),
-                padding: const EdgeInsets.all(16.0),
-                child: Text(
-                  foods[index],
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 18.0
-                  ),
-                ),
-              ),
-            );
-          },
-        ),
     );
   }
 }
