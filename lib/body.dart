@@ -14,15 +14,19 @@ class Foods {
 
 class Body extends StatelessWidget {
   Future<Foods> getFoods() async {
-    String url = "http://192.168.0.157:8000/api/foods";
+    String url = "http://127.0.0.1:8000/api/foods";
     final response = await http.get(Uri.parse(url));
     
     if (response.statusCode == 200) {
       var returnedFood = json.decode(response.body);
-      return Foods(
-        food: returnedFood[0],
-        id: returnedFood[1],
-      );
+      List<String> foodss = [];
+      List<int> idss = [];
+      for (dynamic fods in returnedFood) {
+        foodss.add(fods['foodname']);
+        idss.add(fods['id']);
+      }
+      return Foods(food: foodss, id: idss);
+
     } else {
       throw Exception('Failed to load foods');
     }
@@ -43,7 +47,7 @@ class Body extends StatelessWidget {
           Foods? foods = snapshot.data;
           return ListView.builder(
             itemCount: foods!.food.length,
-            itemBuilder: (context, index) {
+            itemBuilder: (context, index) { 
               return ListTile (
                 title: Text(foods.food[index]),
               );
