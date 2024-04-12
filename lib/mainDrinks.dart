@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:one/foods.dart';
+import 'package:one/drinks.dart';
 import 'package:one/drawer.dart';
 // import 'package:one/adminDrawer.dart';
 // import 'package:one/dragg.dart';
 // import 'package:one/drawer.dart';
 // import 'package:one/drinks.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(Drinks());
 
-class MyApp extends StatelessWidget {
-  const MyApp ({super.key});
+class Drinks extends StatelessWidget {
+  const Drinks ({super.key});
 
   @override
   Widget build(BuildContext context){
@@ -34,7 +34,7 @@ class _myapp extends State<_MyApp> {
         shadowColor: Colors.black,
       ),
       body: Center(
-        child: Body(),
+        child: MyDrinks(),
       ),
       // body: Dragger(),
       drawer: Drawers(),
