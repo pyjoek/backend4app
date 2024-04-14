@@ -4,13 +4,13 @@ import 'dart:convert';
 
 class Drinks {
   final List<dynamic> drinkname;
-  // final List<dynamic> img;
+  final List<dynamic> img;
   final List<int> id;
   final List<dynamic> price;
 
   Drinks ({
     required this.drinkname,
-    // required this.img,
+    required this.img,
     required this.id,
     required this.price,
   });
@@ -25,18 +25,19 @@ class MyDrinks extends StatelessWidget {
     List<dynamic> food = [];
     List<int> ids = [];
     List<dynamic> prices = [];
-    // List<dynamic> imgs = [];
+    List<dynamic> imgs = [];
     if (response.statusCode == 200){
       final results = json.decode(response.body);
       for (dynamic i in results) {
         food.add(i['drinkname']);
         ids.add(i['id']);
+        imgs.add(i['img']);
         prices.add(i['price']);
+      print(imgs);
       }
-      print([prices]);
     }
-      return Drinks(drinkname: food, id: ids, price: prices);
-      // return Foods(foodname: food, id: ids, price: prices, img: imgs);
+      // return Drinks(drinkname: food, id: ids, price: prices);
+      return Drinks(drinkname: food, id: ids, price: prices, img: imgs);
   }
 
   @override 
@@ -62,11 +63,46 @@ class MyDrinks extends StatelessWidget {
             itemCount: drinks!.drinkname.length,
             itemBuilder: (context, index) {
               return Column(
-                children: [
-                  Text(drinks.drinkname[index]),
-                  Text(drinks.price[index]),
-                ],
-              );
+                  children: [
+                    Image(image: AssetImage("images/${drinks.img[index]}")),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(drinks.drinkname[index], style: TextStyle(fontWeight: FontWeight.w900),),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        InkWell(
+                          onTap: () => {},
+                          child: Container(
+                            height: 25,
+                            width: 90,
+                            child: Center(child: Text("Call Waiter", style: TextStyle(fontWeight: FontWeight.w900),)),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(21),
+                              color: Colors.blue
+                            ),
+                          ),
+                        ),
+                        Text(drinks.price[index]),
+                        InkWell(
+                          onTap: () => {},
+                          child: Container(
+                            height: 25,
+                            width: 90,
+                            child: Center(child: Text("Call Waiter", style: TextStyle(fontWeight: FontWeight.w900),)),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(21),
+                              color: Colors.blue
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                );
             }
             );
         }

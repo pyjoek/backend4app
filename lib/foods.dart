@@ -4,14 +4,14 @@ import 'package:http/http.dart' as http;
 
 class Foods {
   final List<dynamic> food;
-  // final List<dynamic> img;
+  final List<dynamic> img;
   final List<dynamic> price;
   final List<dynamic> id;
 
   Foods({
     required this.food,
     required this.id,
-    // required this.img,
+    required this.img,
     required this.price,
   });
 }
@@ -24,17 +24,16 @@ class Body extends StatelessWidget {
     if (response.statusCode == 200) {
       var returnedFood = json.decode(response.body);
       List<String> foodss = [];
-      // List<String> imgs = [];
+      List<String> imgs = [];
       List<int> idss = [];
       List<dynamic> prices = [];
       for (dynamic fods in returnedFood) {
         foodss.add(fods['foodname']);
-        // imgs.add(fods['image']);
+        imgs.add(fods['img']);
         prices.add(fods['price']);
         idss.add(fods['id']);
       }
-      return Foods(food: foodss, id: idss, price: prices);
-      // return Foods(food: foodss, id: idss, img: imgs, price: prices);
+      return Foods(food: foodss, id: idss, img: imgs, price: prices);
 
     } else {
       throw Exception('Failed to load foods');
@@ -61,8 +60,6 @@ class Body extends StatelessWidget {
           ),);
         } else {
           Foods? foods = snapshot.data;
-          // ignore: avoid_print
-          print(Foods);
           return Padding(
             padding: const EdgeInsets.all(16.0),
             child: ListView.builder(
