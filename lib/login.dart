@@ -1,22 +1,46 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:one/main.dart';
+import 'package:one/adminpages/adminPage.dart';
+import 'package:one/drawer.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
   @override
-  Widget build(BuildContext context){
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: _Login(),
-    );
-  }
+  State<LoginPage> createState() => _Login();
 }
 
-class _Login extends StatelessWidget {
+class _Login extends State<LoginPage> {
+  final TextEditingController username = TextEditingController();
+  final TextEditingController password = TextEditingController();
+
+  Future<void> logiin() async {
+    final String usernam = username.text;
+    final String pasword = password.text;
+
+    final response = await http.post(Uri.parse("http://192.168.0.114:8000/api/login"),
+      headers: <String, String> {
+         'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'email': usernam,
+        'password': pasword,
+      })
+    );
+    if (response.statusCode == 200) {
+      Navigator.push(context, MaterialPageRoute(builder: (context) => Admin()));
+      print("Login Succesfully");
+    }else{
+      print("Login failed: ${response.body}");
+    }
+  }
+
   @override
   Widget build(BuildContext context){
     return Scaffold(
+      appBar: AppBar(),
+      drawer: const Drawers(),
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.all(24.0),
@@ -28,6 +52,7 @@ class _Login extends StatelessWidget {
                 style: TextStyle(fontSize: 34, fontWeight: FontWeight.w900),),
                 SizedBox(height: 30,),
                 TextField(
+                  controller: username,
                   decoration: InputDecoration(
                     hintText: "Username",
                     enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(24), borderSide: BorderSide(color: Colors.blue)),
@@ -36,6 +61,7 @@ class _Login extends StatelessWidget {
                 ),
                 SizedBox(height: 20,),
                 TextField(
+                  controller: password,
                   obscureText: true,
                   decoration: InputDecoration(
                     hintText: "Password",
@@ -51,7 +77,7 @@ class _Login extends StatelessWidget {
                 ),
                 SizedBox(height: 20,),
                 GestureDetector(
-                  onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => MyApp())),
+                  onTap: () => logiin(),
                   child: Container(
                     decoration: BoxDecoration(
                       color: Colors.blue,
@@ -61,6 +87,7 @@ class _Login extends StatelessWidget {
                     ),
                   ),
                 ),
+                // ElevatedButton(onPressed: () => logiin(), child: Text("Login")),
                 SizedBox(height: 60,),
                 Row(
                   children: [

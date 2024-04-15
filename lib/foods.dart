@@ -18,7 +18,7 @@ class Foods {
 
 class Body extends StatelessWidget {
   Future<Foods> getFoods() async {
-    String url = "http://127.0.0.1:8000/api/foods";
+    String url = "http://192.168.0.114:8000/api/foods";
     final response = await http.get(Uri.parse(url));
     
     if (response.statusCode == 200) {

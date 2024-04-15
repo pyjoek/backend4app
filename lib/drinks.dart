@@ -20,7 +20,7 @@ class MyDrinks extends StatelessWidget {
   const MyDrinks({super.key});
 
   Future<Drinks> getDrinks() async {
-    String uri = "http://127.0.0.1:8000/api/drinks";
+    String uri = "http://192.168.0.114:8000/api/drinks";
     final response = await http.get(Uri.parse(uri));
     List<dynamic> food = [];
     List<int> ids = [];
