@@ -11,16 +11,13 @@
         <form action = "/callwaiter" method="post" class="col-md-8 offset-md-2 mt-3">@csrf
             <center><h1>DETAILS TO HELP WAITER</h1></center>
             <div class="form-group">
-                <label for="exampleInputEmail1">Email</label>
-                <input type="email" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-            </div>
             <div class="form-group">
                 <label for="exampleInputEmail1">Phone Number</label>
                 <input type="number" name="phone" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter mobile number">
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword1">Food</label>
-                <input type="text" name="drinkname" class="form-control" readonly id="exampleInputPassword1" value="{{$food->drinkname}}">
+                <label for="exampleInputPassword1">Drink</label>
+                <input type="text" name="foodname" class="form-control" readonly id="exampleInputPassword1" value="{{$food->drinkname}}">
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">Table Name</label>

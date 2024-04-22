@@ -53,7 +53,6 @@ class WaiterController extends Controller
     public function store(Request $request)
     {
         $datas = new Waiter();
-        $datas->name = $request->name;
         $datas->phone = $request->phone;
         $datas->foodname = $request->foodname;
         $datas->tablename = $request->tablename;

@@ -23,6 +23,11 @@ class FoodController extends Controller
         $foods  = Food::all();
         return response()->json($foods);
     }
+    public function deel()
+    {
+        $foods  = Food::all();
+        return view('foodsDel', ['foods' => $foods]);
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -91,7 +96,7 @@ class FoodController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Food  $food
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Responsedestroy
      */
     public function edit(Food $food)
     {
@@ -116,8 +121,11 @@ class FoodController extends Controller
      * @param  \App\Models\Food  $food
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Food $food)
+    public function destroy($id)
     {
-        //
+        $datas = Food::find($id);
+        $datas->delete();
+
+        return redirect('/admin');
     }
 }

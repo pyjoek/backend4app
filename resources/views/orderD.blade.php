@@ -11,10 +11,6 @@
         <form action = "/placeorder" method="post" class="col-md-8 offset-md-2 mt-3">@csrf
             <center><h1>PLACE YOUR ORDER</h1></center>
             <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-            </div>
-            <div class="form-group">
                 <label for="exampleInputEmail1">Phone Number</label>
                 <input type="number" name="phone" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter mobile number">
             </div>

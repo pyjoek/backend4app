@@ -22,6 +22,11 @@ class DrinksController extends Controller
         $drinks  = Drinks::all();
         return response()->json($drinks);
     }
+    public function deel()
+    {
+        $drinks  = Drinks::all();
+        return view('drinksDel', ['drinks' => $drinks]);
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -37,11 +42,7 @@ class DrinksController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $filename = $request->file->getClientOriginalName();
+     * @return \Illuminate\Http\ResponseindexientOriginalName();
         $request->file->move(public_path('images'), $filename);
 
 
@@ -111,8 +112,11 @@ class DrinksController extends Controller
      * @param  \App\Models\Drinks  $drinks
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Drinks $drinks)
+    public function destroy($id)
     {
-        //
+        $datas = Drinks::find($id);
+        $datas->delete();
+
+        return redirect('/admin');
     }
 }

@@ -53,7 +53,6 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $datas = new Order();
-        $datas->name = $request->name;
         $datas->phone = $request->phone;
         $datas->foodname = $request->foodname;
         $datas->tablename = $request->tablename;

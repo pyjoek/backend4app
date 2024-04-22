@@ -18,7 +18,7 @@ Route::get('/waiter/{id}', [FoodController::class, 'see']);
 // drinks urls
 Route::get('/drinks', [DrinksController::class, 'index']);
 Route::get('/orderD/{id}', [DrinksController::class, 'show']);
-Route::get('/waiterDr/{id}', [DrinksController::class, 'see']);
+Route::get('/waiterD/{id}', [DrinksController::class, 'see']);
 
 // waiter urls
 Route::post('/callwaiter', [WaiterController::class, 'store']);
@@ -43,5 +43,9 @@ Route::middleware('auth')->group(function () {
         Route::post('/new-drink', [DrinksController::class, 'store']);
         Route::get('/newTable', function(){return view('newTable');});
         Route::post('/new-table', [TableController::class, 'store']);
+        Route::get('/del/foods',[FoodController::class, 'deel']);
+        Route::get('/del/foods/{id}', [FoodController::class, 'destroy']);
+        Route::get('/del/drinks',[DrinksController::class, 'deel']);
+        Route::get('/del/drinks/{id}', [DrinksController::class, 'destroy']);
     });
 });
