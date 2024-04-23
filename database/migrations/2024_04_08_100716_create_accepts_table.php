@@ -15,6 +15,11 @@ class CreateAcceptsTable extends Migration
     {
         Schema::create('accepts', function (Blueprint $table) {
             $table->id();
+            $table->string('foodname');
+            $table->string('tablename');
+            $table->string('username');
+            $table->string('useremail');
+            $table->string('clientPhone');
             $table->timestamps();
         });
     }

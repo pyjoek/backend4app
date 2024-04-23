@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Accept;
+use App\Models\Food;
+use App\Models\Drinks;
 use Illuminate\Http\Request;
 
 class AcceptController extends Controller
@@ -41,10 +43,22 @@ class AcceptController extends Controller
         $datas->tablename = $request->tablename;
         $datas->username = $user->name;
         $datas->useremail = $user->email;
-        $datas->clientid = $request->phone;
+        $datas->clientPhone = $request->phone;
         $datas->save();
+        
+        $food = Food::where('foodname', $request->foodname)->first();
 
-        return redirect()->back()->with('success', 'Food submitted successfully');
+        if ($food) {
+            $food->delete();
+        } else {
+            $drink = Drinks::where('drinkname', $request->foodname)->first();
+            if ($drink) {
+                $drink->delete();
+            }
+        }
+
+
+        return redirect('/dashboard')->with('success', 'Food submitted successfully');
     }
 
     /**

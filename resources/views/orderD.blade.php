@@ -16,7 +16,7 @@
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">Drink</label>
-                <input type="text" name="drinkname" class="form-control" id="exampleInputPassword1" value="{{$food->drinkname}}">
+                <input type="text" name="foodname" class="form-control" id="exampleInputPassword1" value="{{$food->drinkname}}">
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">Table Name</label>

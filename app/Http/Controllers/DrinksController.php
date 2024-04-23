@@ -44,8 +44,11 @@ class DrinksController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\ResponseindexientOriginalName();
         $request->file->move(public_path('images'), $filename);
-
-
+        */
+    public function store(Request $request)
+    {
+        $filename = $request->file->getClientOriginalName();
+        $request->file->move(public_path('images'), $filename);
         $drink = new Drinks();
         $drink->img = $filename;
         $drink->drinkname = $request->drink;
