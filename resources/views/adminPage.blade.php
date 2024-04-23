@@ -35,6 +35,7 @@
             <a href="/newTable" class="p-2">Add Table</a>
             <a href="/del/foods" class="p-2">Delete Foods</a>
             <a href="/del/drinks" class="p-2">Delete Drinks</a>
+            <a href="/waliokubali" class="p-2">Waiters Accepted</a>
             <a href="/logout"><button class="btn btn-primary">Logout</button></a>
             </div>
 

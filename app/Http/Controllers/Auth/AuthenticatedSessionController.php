@@ -32,11 +32,8 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        if (Auth::user()->role === 'admin') {
-            return redirect('/admin');
-        }else{
-            return redirect('/dashboard');
-        }
+        return redirect('/admin');
+        
     }
     public function receive(Request $request)
     {
@@ -46,14 +43,14 @@ class AuthenticatedSessionController extends Controller
             return response()->json(['succesfully' => 'You are logged in'], 200);
         }
 
-        // if (Auth::attempt($credentials)) {
-        //     $user = Auth::user();
-        //     if ($user->role === 'admin') {
-        //         return response()->json(['successful' => "Loged in", 200]);
-        //     } else {
-        //         return response()->json(['succe' => '/dashboard']);
-        //     }
-        // }
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+            if ($user->role === 'admin') {
+                return response()->json(['successful' => "Loged in", 200]);
+            } else {
+                return response()->json(['succe' => '/dashboard']);
+            }
+        }
 
         return response()->json(['error' => 'Unauthorized'], 401);
     }

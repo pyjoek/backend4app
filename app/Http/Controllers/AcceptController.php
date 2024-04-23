@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Accept;
-use App\Models\Food;
-use App\Models\Drinks;
+use App\Models\Waiter;
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 class AcceptController extends Controller
@@ -16,7 +16,8 @@ class AcceptController extends Controller
      */
     public function index()
     {
-        //
+        $accept = Accept::all();
+        return view('adminPageAccepted',['accept' => $accept]);
     }
 
     /**
@@ -46,12 +47,12 @@ class AcceptController extends Controller
         $datas->clientPhone = $request->phone;
         $datas->save();
         
-        $food = Food::where('foodname', $request->foodname)->first();
+        $food = Waiter::where('foodname', $request->foodname)->first();
 
         if ($food) {
             $food->delete();
         } else {
-            $drink = Drinks::where('drinkname', $request->foodname)->first();
+            $drink = Order::where('foodname', $request->foodname)->first();
             if ($drink) {
                 $drink->delete();
             }

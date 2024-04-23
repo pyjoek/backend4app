@@ -43,12 +43,12 @@
         <table class="table">
             <th scope="lol">Table Number</th>
             <th scope="lol">Food Ordered</th>
-            <th scope="lol">Customers Phone</th>
-            @foreach ($orders as $order)
+            <th scope="lol">Waiter Who accepted</th>
+            @foreach ($accept as $order)
                 <tr>
                     <td>{{$order->tablename}}</td>
                     <td>{{$order->foodname}}</td>
-                    <td>{{$order->phone}}</td>
+                    <td>{{$order->username}}</td>
                 </tr>
             @endforeach
         </table>

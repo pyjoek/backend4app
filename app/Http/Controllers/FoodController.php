@@ -57,7 +57,7 @@ class FoodController extends Controller
         $food->price = $request->price;
         $food->save();
 
-        return redirect('/');
+        return redirect('/admin');
     }
 
     /**

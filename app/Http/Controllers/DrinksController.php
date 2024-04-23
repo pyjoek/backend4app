@@ -55,7 +55,7 @@ class DrinksController extends Controller
         $drink->price = $request->price;
         $drink->save();
 
-        return redirect('/drinks');
+        return redirect('/admin');
     }
 
     /**

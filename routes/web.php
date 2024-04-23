@@ -43,6 +43,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/new-drink', [DrinksController::class, 'store']);
         Route::get('/newTable', function(){return view('newTable');});
         Route::post('/new-table', [TableController::class, 'store']);
+        Route::get('/waliokubali', [AcceptController::class, 'index']);
         Route::get('/del/foods',[FoodController::class, 'deel']);
         Route::get('/del/foods/{id}', [FoodController::class, 'destroy']);
         Route::get('/del/drinks',[DrinksController::class, 'deel']);

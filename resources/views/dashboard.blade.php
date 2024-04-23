@@ -12,8 +12,8 @@
             <h1 class="mt-2">Orders Placed</h1>
         </center>
     <div class="d-flex justify-content-around mb-3">
-        <a href="/dashboard"><button class="btn btn-success">Request</button></a>
-        <a href="/waitersRequest"><button class="btn btn-success">Order</button></a>
+        <a href="/dashboard"><button class="btn btn-success">Order</button></a>
+        <a href="/waitersRequest"><button class="btn btn-success">Request</button></a>
     </div>
         <table class="table">
             <th scope="col">Table Number</th>
